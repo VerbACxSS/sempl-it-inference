@@ -1,0 +1,37 @@
+services:
+  sempl-it-inference:
+    container_name: 'sempl-it-inference'
+    image: 'vllm/vllm-openai:v0.8.1'
+    restart: 'unless-stopped'
+    ports:
+      - '8000:8000'
+    volumes:
+      - '~/.cache/huggingface:/root/.cache/huggingface'
+    environment:
+      - 'VLLM_API_KEY=${VLLM_API_KEY:-123456789}'
+    command: ["--model=Qwen/Qwen2.5-7B-Instruct-AWQ",
+              "--quantization=awq",
+              "--load-format=auto",
+              "--gpu-memory-utilization=0.95",
+              "--max-model-len=6144",
+              "--enable-lora",
+              "--max-loras=8",
+              "--max_lora_rank=64",
+              "--lora-modules",
+              "{\"name\":\"proofreading\",\"path\":\"VerbACxSS/sempl-it-proofreading-awq\"}",
+              "{\"name\":\"lex\",\"path\":\"VerbACxSS/sempl-it-lex-awq\"}",
+              "{\"name\":\"connectives\",\"path\":\"VerbACxSS/sempl-it-connectives-awq\"}",
+              "{\"name\":\"expressions\",\"path\":\"VerbACxSS/sempl-it-expressions-awq\"}",
+              "{\"name\":\"sentence_splitter\",\"path\":\"VerbACxSS/sempl-it-sentence-splitter-awq\"}",
+              "{\"name\":\"nominalizations\",\"path\":\"VerbACxSS/sempl-it-nominalizations-awq\"}",
+              "{\"name\":\"verbs\",\"path\":\"VerbACxSS/sempl-it-verbs-awq\"}",
+              "{\"name\":\"sentence_reorganizer\",\"path\":\"VerbACxSS/sempl-it-sentence-reorganizer-awq\"}"]
+    ipc: host
+    runtime: nvidia
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
