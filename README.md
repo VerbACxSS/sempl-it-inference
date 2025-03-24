@@ -1,11 +1,11 @@
 # SEMPL-IT inference
-This is the LLM inference application of the SEMPL-IT, a web app designed to simplify Italian administrative document using three different fine-tuned LLMs.
+This is the LLM inference module of the SEMPL-IT, a web app designed to simplify Italian administrative document using three different fine-tuned LLMs.
 
 Check out the [frontend](https://github.com/VerbACxSS/semp-it-frontend) and the [backend](https://github.com/VerbACxSS/semp-it-backend) of the SEMPL-IT web app.
 
 ## Getting started
 ### Pre-requisites
-This LLM inference application is developed using vllm framework and Hugging Face models. A modern NVIDIA GPU with 10GB+ of VRAM is required. The following software are required to run the application:
+This LLM inference module is developed using vllm framework and Hugging Face models. A modern NVIDIA GPU with 10GB+ of VRAM is required. The following software are required to run the application:
 * Python (tested with version 3.12.8)
 * Pip (tested with version 23.2.1)
 
