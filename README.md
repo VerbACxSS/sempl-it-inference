@@ -1,4 +1,4 @@
-# SEMPL-IT models
+# SEMPL-IT inference
 This is the LLM inference application of the SEMPL-IT, a web app designed to simplify Italian administrative document using three different fine-tuned LLMs.
 
 Check out the [frontend](https://github.com/VerbACxSS/semp-it-frontend) and the [backend](https://github.com/VerbACxSS/semp-it-backend) of the SEMPL-IT web app.
@@ -89,6 +89,7 @@ docker compose up --build -d
 The LLM inference application will be running at http://localhost:8000 by default.
 
 Make a POST request to the following endpoint to simplify an administrative text:
+```sh
 curl -X POST "http://localhost:8000/v1/chat/completions" \
 -H "Content-Type: application/json" \
 -H "Authorization: Bearer VLLM_API_KEY" \
@@ -105,7 +106,7 @@ curl -X POST "http://localhost:8000/v1/chat/completions" \
       }
     ]
 }'
-
+```
 ## Built with
 * [Huggingface](https://huggingface.co/)
 * [vllm](https://github.com/vllm-project/vllm)
