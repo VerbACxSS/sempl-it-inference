@@ -1,7 +1,7 @@
 services:
   sempl-it-inference:
     container_name: 'sempl-it-inference'
-    image: 'vllm/vllm-openai:v0.8.1'
+    image: 'vllm/vllm-openai:v0.8.5.post1'
     restart: 'unless-stopped'
     ports:
       - '8000:8000'
@@ -10,10 +10,12 @@ services:
     environment:
       - 'VLLM_API_KEY=${VLLM_API_KEY:-123456789}'
     command: ["--model=Qwen/Qwen2.5-7B-Instruct-AWQ",
-              "--quantization=awq",
+              "--quantization=awq_marlin",
               "--load-format=auto",
               "--gpu-memory-utilization=0.95",
               "--max-model-len=6144",
+              "--max-seq_len-to-capture=6144",
+              "--enable-prefix-caching",
               "--enable-lora",
               "--max-loras=8",
               "--max_lora_rank=64",

@@ -31,19 +31,21 @@ source venv/bin/activate
 
 Install all dependencie
 ```sh
-pip install vllm==8.0.1
+pip install vllm==0.8.5.post1
 pip install autoawq==0.2.8
 ```
 
 Start the inference server
 ```sh
 vllm serve --model=Qwen/Qwen2.5-7B-Instruct-AWQ \
---quantization=awq \
+--quantization=awq_marlin \
 --load-format=auto \
 --gpu-memory-utilization=0.95 \
 --max-model-len=6144 \
+--max-seq_len-to-capture=6144 \
+--enable-prefix-caching \
 --enable-lora \
---max-loras=8 \
+--max-loras=9 \
 --max_lora_rank=64 \
 --lora-modules \
 {\"name\":\"proofreading\",\"path\":\"VerbACxSS/sempl-it-proofreading-awq\"} \
@@ -59,12 +61,14 @@ vllm serve --model=Qwen/Qwen2.5-7B-Instruct-AWQ \
 ### Using `docker`
 Run the application using `docker`
 ```sh
-docker run --gpus=all -p 8000:8000 --env-file .env --name sempl-it-models vllm/vllm-openai:v0.8.1 \
+docker run --gpus=all -p 8000:8000 --env-file .env --name sempl-it-models vllm/vllm-openai:v0.8.5.post1 \
 --model=Qwen/Qwen2.5-7B-Instruct-AWQ \
---quantization=awq \
+--quantization=awq_marlin \
 --load-format=auto \
 --gpu-memory-utilization=0.95 \
 --max-model-len=6144 \
+--max-seq_len-to-capture=6144 \
+--enable-prefix-caching \
 --enable-lora \
 --max-loras=8 \
 --max_lora_rank=64 \
