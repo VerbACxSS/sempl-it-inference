@@ -1,7 +1,11 @@
-# SEMPL-IT inference
-This is the LLM inference module of the SEMPL-IT, a web app designed to simplify Italian administrative document using three different fine-tuned LLMs.
+# SEMPL-IT inference module
+This is the inference module of SEMPL-IT, a web app designed to simplify Italian administrative document using different fine-tuned LLMs.
 
-Check out the [frontend](https://github.com/VerbACxSS/semp-it-frontend) and the [backend](https://github.com/VerbACxSS/semp-it-backend) of the SEMPL-IT web app.
+## WebApp
+The SEMPL-IT web app consists of the following repositories:
+- Frontend: [GitHub Repository](https://github.com/VerbACxSS/semp-it-frontend)
+- Backend: [GitHub Repository](https://github.com/VerbACxSS/semp-it-backend)
+- Inference Module: [GitHub Repository](https://github.com/VerbACxSS/semp-it-intefence)
 
 ## Getting started
 ### Pre-requisites
@@ -111,6 +115,7 @@ curl -X POST "http://localhost:8000/v1/chat/completions" \
     ]
 }'
 ```
+
 ## Built with
 * [Huggingface](https://huggingface.co/)
 * [vllm](https://github.com/vllm-project/vllm)
